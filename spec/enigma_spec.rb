@@ -58,5 +58,6 @@ end
 # :decryption => the decrypted String
 # :key => the key used for decryption as a String
 # :date => the date used for decryption as a String in the form DDMMYY
+
 # Interaction Pattern
 # The Enigma class should respond to the following interaction pattern:
