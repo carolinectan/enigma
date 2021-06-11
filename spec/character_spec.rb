@@ -3,7 +3,7 @@ require './lib/character.rb'
 
 RSpec.describe Character do
   before :each do
-    values = ("a".."z").to_a << " "
+    values = ('a'..'z').to_a << ' '
     @character = Character.new(values)
   end
 

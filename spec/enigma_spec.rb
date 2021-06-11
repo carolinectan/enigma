@@ -1,9 +1,13 @@
 require 'rspec'
-require '.lib/enigma.rb'
+require './lib/enigma.rb'
 
 RSpec.describe Enigma do
   before :each do
     @enigma = Enigma.new
+  end
+
+  it 'exists' do
+    expect(@enigma).to be_an(Enigma)
   end
 
   it 'can encrypt a message with a key and date' do
