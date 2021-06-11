@@ -4,23 +4,22 @@ require './lib/character.rb'
 
 RSpec.describe Shift do
   before :each do
-    @shift = Shift.new(character_set)
+    @shift = Shift.new(@nums)
   end
 
   it 'exists' do
-    expect(@shift).to be_an(Shift)
+    expect(@shift).to be_a(Shift)
   end
 
   it 'initializes with attributes' do
-    expect(@shift.character_set).to eq((['a', 'b', 'c', 'd', 'e',
-      'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
-      'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']))
+    expect(@shift.nums).to eq([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    expect(@shift.key).to be_a(String)
+    expect(@shift.key.length).to eq(5)
   end
 
-  xit 'can return a random 5-digit number' do
+  it 'can test that it returns an array of 5 numbers' do
+    allow(@shift).to receive(:key).and_return('05973')
 
+    expect(@shift.key).to eq('05973')
   end
-
-  xit 'can '
-  # a.sample(4)      #=> [6, 4, 2, 5]
 end
