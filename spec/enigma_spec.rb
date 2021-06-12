@@ -1,3 +1,4 @@
+require_relative 'spechelper'
 require 'rspec'
 require './lib/enigma.rb'
 
@@ -10,6 +11,14 @@ RSpec.describe Enigma do
     expect(@enigma).to be_an(Enigma)
   end
 
+  it 'initializes with attributes' do
+    expect(@enigma.alphabet).to eq(["a", "b", "c", "d", "e",
+      "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+      "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
+    expect(@enigma.character_set.length).to eq(27)
+
+  end
+
   it 'can encrypt a message with a key and date' do
     expected = {
                   encryption: "keder ohulw",
@@ -20,26 +29,25 @@ RSpec.describe Enigma do
     expect(@enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
   end
 
-  it 'can decrypt a message with a key and date' do
+  xit 'can decrypt a message with a key and date' do
     expected = {
                   decryption: "hello world",
                   key: "02715",
                   date: "040895"
                 }
 
-
-    expect(@enigma.decrypt("keder ohulw", "02715", "040895"). to eq(expected)
+    expect(@enigma.decrypt("keder ohulw", "02715", "040895")). to eq(expected)
   end
 
-  it 'can encrypt a message with a key (uses today s date)' do
-    expect(@encrypted = enigma.encrypt("hello world", "02715"). to eq() # encryption hash here
+  xit 'can encrypt a message with a key (uses today s date)' do
+    expect(@encrypted = enigma.encrypt("hello world", "02715")). to eq() # encryption hash here
   end
 
-  it 'can decrypt a message with a key (uses today s date)' do
-    expect(@encrypted = enigma.decrypt(encrypted[:encryption], "02715"). to eq() # decryption hash here
+  xit 'can decrypt a message with a key (uses today s date)' do
+    expect(@encrypted = enigma.decrypt(encrypted[:encryption], "02715")). to eq() # decryption hash here
   end
 
-  it 'can encrypt a message (generates random key and uses today s date)' do
+  xit 'can encrypt a message (generates random key and uses today s date)' do
     expect(@enigma.encrypt("hello world")).to eq() # encryption hash here
   end
 end
