@@ -1,17 +1,10 @@
 class Key
   attr_reader :nums, :key, :offset, :final_shift
 
-  def initialize(nums)
-    @nums = (0..9).to_a
-
-    @key = Array.new
-    5.times do
-      @key << @nums.sample
-    end
-    @key = @key.join
-
-    @offset = self.create_offset(date = Date.today)
-
+  def initialize(date, key)
+    @date = date
+    @key = key
+    @offset = self.create_offset(@date)
     @final_shift = self.create_final_shift
   end
 
@@ -21,6 +14,19 @@ class Key
       date = date.strftime("%d%m%y")
     end
       @offset = (date.to_i ** 2).to_s[-4..-1]
+  end
+
+  def create_key(key)
+    if key.length == 5 && key.is_a?(String) && key.to_i.is_a?(Integer)
+      key
+    else
+      @key = Array.new
+      nums = (0..9).to_a
+      5.times do
+        @key << nums.sample
+      end
+      @key = @key.join
+    end
   end
 
   def create_final_shift
