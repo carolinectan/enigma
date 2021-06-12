@@ -1,7 +1,6 @@
 require_relative 'spechelper'
 require 'rspec'
 require './lib/key'
-require './lib/character'
 
 RSpec.describe Key do
   before :each do
