@@ -1,19 +1,11 @@
 class Key
-  attr_reader :nums, :key, :offset, :final_shift
+  attr_reader :date, :key, :offset, :final_shift
 
-  def initialize(date, key)
+  def initialize(key, date = Date.today)
     @date = date
-    @key = key
+    @key = self.create_key(key)
     @offset = self.create_offset(@date)
     @final_shift = self.create_final_shift
-  end
-
-  def create_offset(date = Date.today)
-    unless date.to_s.length == 6 && date.is_a?(String) && date.to_i.is_a?(Integer)
-      date = Date.parse((date).to_s)
-      date = date.strftime("%d%m%y")
-    end
-      @offset = (date.to_i ** 2).to_s[-4..-1]
   end
 
   def create_key(key)
@@ -27,6 +19,14 @@ class Key
       end
       @key = @key.join
     end
+  end
+
+  def create_offset(date = Date.today)
+    unless date.to_s.length == 6 && date.is_a?(String) && date.to_i.is_a?(Integer)
+      date = Date.parse((date).to_s)
+      date = date.strftime("%d%m%y")
+    end
+      @offset = (date.to_i ** 2).to_s[-4..-1]
   end
 
   def create_final_shift
