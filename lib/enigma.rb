@@ -2,6 +2,7 @@ require 'date'
 require_relative '../lib/key'
 require_relative '../modules/arrayable'
 
+
 class Enigma
   include Arrayable
 
