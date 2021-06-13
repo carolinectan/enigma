@@ -1,10 +1,11 @@
 require 'date'
 require_relative '../lib/key'
 require_relative '../modules/arrayable'
-
+require_relative '../modules/hashable'
 
 class Enigma
   include Arrayable
+  include Hashable
 
   attr_reader :set
 
@@ -24,7 +25,7 @@ class Enigma
     char_index = self.char_index(char_array)
     char_index_and_pos = self.char_index_and_pos(char_array, char_index, pos_in_set)
 
-    encrypted_message = char_index_and_pos.map do |char, index, pos|
+    message = char_index_and_pos.map do |char, index, pos|
       if !set.include?(char)
         char
       elsif index % 4 == 0
@@ -37,12 +38,7 @@ class Enigma
         @set.rotate(pos + key.final_shift[:d])[0]
       end
     end.join
-
-    {
-      encryption: encrypted_message,
-      key: key.key,
-      date: key.date
-    }
+    message_output("encryption", message, key)
   end
 
 ### DECRYPTING
@@ -53,7 +49,7 @@ class Enigma
     char_index = self.char_index(char_array)
     char_index_and_pos = self.char_index_and_pos(char_array, char_index, pos_in_set)
 
-    decrypted_message = char_index_and_pos.map do |char, index, pos|
+    message = char_index_and_pos.map do |char, index, pos|
       if !set.include?(char)
         char
       elsif index % 4 == 0
@@ -66,10 +62,6 @@ class Enigma
         @set.rotate(pos - key.final_shift[:d])[0]
       end
     end.join
-    {
-      decryption: decrypted_message,
-      key: key.key,
-      date: key.date
-    }
+    message_output("decryption", message, key)
   end
 end
