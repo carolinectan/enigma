@@ -2,9 +2,11 @@ require 'date'
 require_relative '../lib/key'
 require_relative '../modules/arrayable'
 require_relative '../modules/hashable'
+require_relative '../modules/cryptable'
 
 class Enigma
   include Arrayable
+  include Cryptable
   include Hashable
 
   attr_reader :set
@@ -16,11 +18,8 @@ class Enigma
 ### ENCRYPTING
   def encrypt(message, key_arg = 'a', date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
-    char_array = self.char_array(message)
-    pos_in_set = self.positions_in_set(char_array)
-    char_index = self.char_index(char_array)
-    char_index_and_pos = self.char_index_and_pos(char_array, char_index, pos_in_set)
-
+    char_index_and_pos = self.char_index_and_pos(message)
+    # self.crypt(char_index_and_pos, key, ('+').to_sym)
     message = char_index_and_pos.map do |char, index, pos|
       if !set.include?(char)
         char
@@ -40,11 +39,7 @@ class Enigma
 ### DECRYPTING
   def decrypt(message, key_arg, date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
-    char_array = self.char_array(message)
-    pos_in_set = self.positions_in_set(char_array)
-    char_index = self.char_index(char_array)
-    char_index_and_pos = self.char_index_and_pos(char_array, char_index, pos_in_set)
-
+    char_index_and_pos = self.char_index_and_pos(message)
     message = char_index_and_pos.map do |char, index, pos|
       if !set.include?(char)
         char

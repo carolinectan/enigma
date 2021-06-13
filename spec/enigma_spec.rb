@@ -46,7 +46,7 @@ RSpec.describe Enigma do
     expected = [['h', 0, 7], ['e', 1, 4], ['l', 2, 11], ['l', 3, 11], ['o', 4, 14],
     [' ', 5, 26], ['w', 6, 22], ['o', 7, 14], ['r', 8, 17], ['l', 9, 11], ['d', 10, 3]]
 
-    expect(@enigma.char_index_and_pos(char_array, char_index, pos_in_set)).to eq(expected)
+    expect(@enigma.char_index_and_pos('hello world')).to eq(expected)
   end
 
   it 'can encrypt a message with a key and date' do
