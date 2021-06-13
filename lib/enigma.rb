@@ -57,7 +57,7 @@ end
   end
 
 ### DECRYPTING
-  def decrypt(message, key_arg, date_arg)
+  def decrypt(message, key_arg, date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
     char_array = self.char_array(message)
     pos_in_set = self.positions_in_set(char_array)
