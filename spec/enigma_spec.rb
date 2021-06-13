@@ -60,7 +60,7 @@ RSpec.describe Enigma do
     expect(@enigma.encrypt("hello world!", "02715", "040895")).to eq(expected)
   end
 
-  xit 'can decrypt a message with a key and date' do
+  it 'can decrypt a message with a key and date' do
     expected = {
                   decryption: "hello world",
                   key: "02715",
@@ -81,7 +81,7 @@ RSpec.describe Enigma do
   end
 
   xit 'can decrypt a message with a key (uses today s date)' do
-    expect(@encrypted = enigma.decrypt(encrypted[:encryption], "02715")). to eq() # decryption hash here
+    expect(@enigma.decrypt('rsmaynxdaze', "02715")). to eq(654) # decryption hash here
   end
 
   it 'can encrypt a message (generates random key and uses today s date)' do
@@ -96,10 +96,5 @@ RSpec.describe Enigma do
   end
 end
 
-# Enigma#decrypt(ciphertext, key, date)
-# The decrypt method takes a ciphertext String and the Key used for encryption as arguments. The decrypt method can optionally take a date as the third argument. If no date is given, this method should use today’s date for decryption.
-#
-# The decrypt method returns a hash with three keys:
-# :decryption => the decrypted String
-# :key => the key used for decryption as a String
-# :date => the date used for decryption as a String in the form DDMMYY
+# TO DO:
+# -Make encrypt and decrypt classes then reference here as in given interation pattern
