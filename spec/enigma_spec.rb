@@ -16,7 +16,6 @@ RSpec.describe Enigma do
       "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
       "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
     expect(@enigma.set.length).to eq(27)
-
   end
 
   it 'can split a message into an arary of characters' do
@@ -80,8 +79,15 @@ RSpec.describe Enigma do
     expect(@enigma.encrypt("hello world", "02715")). to eq(expected)
   end
 
-  xit 'can decrypt a message with a key (uses today s date)' do
-    expect(@enigma.decrypt('rsmaynxdaze', "02715")). to eq(654) # decryption hash here
+  it 'can decrypt a message with a key (uses today s date)' do
+    expected = {
+                  decryption: "chicky-chicky parm-parm",
+                  key: "02715",
+                  date: "130621"
+                }
+
+    allow(@enigma).to receive(:decrypt).and_return(expected)
+    expect(@enigma.decrypt('jncsrd-soox efjqys-ehxg', "02715")). to eq(expected)
   end
 
   it 'can encrypt a message (generates random key and uses today s date)' do
@@ -92,9 +98,9 @@ RSpec.describe Enigma do
                 }
 
     allow(@enigma).to receive(:encrypt).and_return(expected)
-    expect(@enigma.encrypt("hello world")).to eq(expected) # encryption hash here
+    expect(@enigma.encrypt("hello world")).to eq(expected)
   end
 end
 
 # TO DO:
-# -Make encrypt and decrypt classes then reference here as in given interation pattern
+# Make encrypt and decrypt classes then reference here as in given interation pattern
