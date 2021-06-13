@@ -47,10 +47,21 @@ RSpec.describe Enigma do
     expected = [[0, 7], [1, 4], [2, 11], [3, 11], [4, 14],
     [5, 26], [6, 22], [7, 14], [8, 17], [9, 11], [10, 3]]
 
-    expect(@enigma.char_index_and_pos(char_array, char_index, pos_in_set)).to eq(expected)
+    expect(@enigma.index_and_pos(char_array, char_index, pos_in_set)).to eq(expected)
   end
+#####
+  it 'can return a nested array of the char, index, and position in set' do
+    char_array = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+    char_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    pos_in_set = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
 
-  it 'can encrypt a message with a key and date' do
+    expected = [["h", 0, 7], ["e", 1, 4], ["l", 2, 11], ["l", 3, 11], ["o", 4, 14],
+    [" ", 5, 26], ["w", 6, 22], ["o", 7, 14], ["r", 8, 17], ["l", 9, 11], ["d", 10, 3]]
+
+    expect(@enigma.char_index_and_pos_arr(char_array, char_index, pos_in_set)).to eq(expected)
+  end
+#####
+  xit 'can encrypt a message with a key and date' do
     expected = {
                   encryption: "keder ohulw",
                   key: "02715",
@@ -70,7 +81,7 @@ RSpec.describe Enigma do
     expect(@enigma.decrypt("keder ohulw", "02715", "040895")). to eq(expected)
   end
 
-  it 'can encrypt a message with a key (uses today s date)' do
+  xit 'can encrypt a message with a key (uses today s date)' do
     expected = {
                   encryption: "okfavfqdyry",
                   key: "02715",
@@ -84,7 +95,7 @@ RSpec.describe Enigma do
     expect(@encrypted = enigma.decrypt(encrypted[:encryption], "02715")). to eq() # decryption hash here
   end
 
-  it 'can encrypt a message (generates random key and uses today s date)' do
+  xit 'can encrypt a message (generates random key and uses today s date)' do
     expected = {
                   encryption: "rsmaynxdaze",
                   key: "86242",
