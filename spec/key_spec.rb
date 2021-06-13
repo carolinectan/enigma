@@ -3,58 +3,81 @@ require 'rspec'
 require './lib/key'
 
 RSpec.describe Key do
-  before :each do
-    @key = Key.new(@nums)
+  describe 'a Key with key and date arguments' do
+    before :each do
+      @key1 = Key.new('12345', '120721')
+    end
+
+    it 'exists' do
+      expect(@key1).to be_a(Key)
+    end
+
+    it 'initializes with attributes' do
+      expect(@key1.date).to eq('120721')
+      expect(@key1.key).to eq('12345')
+      expect(@key1.offset).to eq('9841')
+      expected = {
+                    a: 21,
+                    b: 31,
+                    c: 38,
+                    d: 46
+                  }
+      expect(@key1.final_shift).to eq(expected)
+    end
   end
 
-  it 'exists' do
-    expect(@key).to be_a(Key)
+  describe 'a Key with key argument and no date argument' do
+    before :each do
+      @key2 = Key.new('12345')
+    end
+
+    it 'exists' do
+      expect(@key2).to be_a(Key)
+    end
+
+    it 'initializes with attributes' do
+      allow(@key3).to receive(:date).and_return('130621')
+      expect(@key2.date).to eq('130621')
+      expect(@key2.key).to eq('12345')
+      allow(@key2).to receive(:create_offset).and_return('5641')
+      expect(@key2.offset).to eq('5641')
+      expected = {
+                    a: 17,
+                    b: 29,
+                    c: 38,
+                    d: 46
+                  }
+      allow(@key2).to receive(:final_shift).and_return(expected)
+      expect(@key2.final_shift).to eq(expected)
+    end
   end
 
-  it 'initializes with attributes' do
-    expect(@key.nums).to eq([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+  describe 'a Key with non-numeric key argument and no date argument' do
+    before :each do
+      @key3 = Key.new("a")
+    end
 
-    expect(@key.key).to be_a(String)
-    expect(@key.key.length).to eq(5)
-    expect(@key.key.to_i).to be_an(Integer)
+    it 'exists' do
+      expect(@key3).to be_a(Key)
+    end
 
-    expect(@key.offset).to be_a(String)
-    expect(@key.offset.length).to eq(4)
-    expect(@key.offset.to_i).to be_an(Integer)
-
-    expect(@key.final_shift).to be_a(Hash)
-    expect(@key.final_shift.length).to eq(4)
-    expect(@key.final_shift.values.sum).to be_a(Integer)
-  end
-
-  it 'can test that it returns an array of 5 numbers' do
-    allow(@key).to receive(:key).and_return('05973')
-
-    expect(@key.key).to eq('05973')
-  end
-
-  it 'can create offsets' do
-    expect(@key.create_offset).to be_a(String)
-    expect(@key.create_offset.length).to eq(4)
-
-    allow(@key).to receive(:create_offset).and_return('5641')
-    expect(@key.create_offset).to eq('5641')
-  end
-
-  it 'can create offsets with a date input as a numeric DDMMYY string' do
-    expect(@key.create_offset('160221')).to eq('8841')
-  end
-
-it 'can return a hash of the final shift values' do    # key = double('39927')
-    # stubbed_expected = {
-    #                       :a => 55,
-    #                       :b => 14,
-    #                       :c => 88,
-    #                       :d => 41
-    #                     }
-    # allow(@key).to receive(:final_shift).and_return(stubbed_expected)
-    #
-    # expect(@key.final_shift).to eq(stubbed_expected)
-    expect(@key.final_shift).to be_a(Hash)
+    it 'initializes with attributes' do
+      allow(@key3).to receive(:date).and_return('130621')
+      expect(@key3.date).to eq('130621')
+      expect(@key3.key.length).to eq(5)
+      expect(@key3.key).to be_a(String)
+      allow(@key3).to receive(:key).and_return("98765")
+      expect(@key3.key).to eq("98765")
+      allow(@key3).to receive(:create_offset).and_return('5641')
+      expect(@key3.offset).to eq('5641')
+      expected = {
+                    a: 103,
+                    b: 93,
+                    c: 80,
+                    d: 66
+                  }
+      allow(@key3).to receive(:final_shift).and_return(expected)
+      expect(@key3.final_shift).to eq(expected)
+    end
   end
 end
