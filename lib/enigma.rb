@@ -28,7 +28,6 @@ class Enigma
 
   def encrypt(message, key_arg = "a", date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
-
     char_array = self.char_array(message)
     pos_in_set = self.positions_in_set(char_array)
     char_index = self.char_index(char_array)
@@ -48,7 +47,7 @@ class Enigma
 
     {
       encryption: encrypted_message,
-      key: key_arg,
+      key: key.key,
       date: key.date
     }
 
