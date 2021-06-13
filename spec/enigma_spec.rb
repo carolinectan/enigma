@@ -72,12 +72,12 @@ RSpec.describe Enigma do
 
   it 'can encrypt a message with a key (uses today s date)' do
     expected = {
-                  encryption: "keder ohulw",
+                  encryption: "okfavfqdyry",
                   key: "02715",
                   date: "130621"
                 }
 
-    expect(@enigma.encrypt("hello world", "02715")). to eq(5) # encryption hash here
+    expect(@enigma.encrypt("hello world", "02715")). to eq(expected)
   end
 
   xit 'can decrypt a message with a key (uses today s date)' do
