@@ -1,6 +1,6 @@
-require_relative 'spechelper'
 require 'rspec'
-require './lib/enigma.rb'
+require_relative 'spechelper'
+require_relative '../lib/enigma'
 
 RSpec.describe Enigma do
   before :each do

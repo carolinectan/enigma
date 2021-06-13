@@ -1,6 +1,6 @@
-require_relative 'spechelper'
 require 'rspec'
-require './lib/key'
+require_relative 'spechelper'
+require_relative '../lib/key'
 
 RSpec.describe Key do
   describe 'a Key with key and date arguments' do

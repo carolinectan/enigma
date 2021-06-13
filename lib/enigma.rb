@@ -1,26 +1,14 @@
 require 'date'
-require_relative '../lib/key.rb'
+require_relative '../lib/key'
+require_relative '../modules/arrayable'
 
 class Enigma
+  include Arrayable
+
   attr_reader :set
 
   def initialize
     @set = ('a'..'z').to_a << ' '
-  end
-
-### FOR BOTH ENCRYPTING AND DECRYPTING
-  def char_array(message)
-    message.split('')
-  end
-
-  def positions_in_set(char_array)
-    char_array.map do |char|
-      @set.index(char)
-    end
-  end
-
-  def char_index(char_array)
-    (0..char_array.length - 1).to_a
   end
 
 ### ENCRYPTING
