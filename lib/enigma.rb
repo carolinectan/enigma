@@ -34,13 +34,13 @@ class Enigma
     char_index_and_pos = char_index_and_pos(char_array, char_index, pos_in_alph)
 
     encrypted_message = char_index_and_pos.map do |index, pos|
-      if index % 4 == 0 #char in pos 0, 4, 8, etc
+      if index % 4 == 0
         @alphabet.rotate(pos + key.final_shift[:a])[0]
-      elsif index % 4 == 1 #char in pos 1, 5, 9, etc
+      elsif index % 4 == 1
         @alphabet.rotate(pos + key.final_shift[:b])[0]
-      elsif index % 4 == 2 #char in pos 2, 6, 10, etc
+      elsif index % 4 == 2
         @alphabet.rotate(pos + key.final_shift[:c])[0]
-      elsif index % 4 == 3 #char in pos 3, 7, 11, etc
+      elsif index % 4 == 3
         @alphabet.rotate(pos + key.final_shift[:d])[0]
       end
     end.join
