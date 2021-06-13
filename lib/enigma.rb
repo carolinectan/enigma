@@ -9,26 +9,26 @@ class Enigma
   end
 
 ### FOR BOTH ENCRYPTING AND DECRYPTING
-def char_array(message)
-  message.split('')
-end
-
-def positions_in_set(char_array)
-  char_array.map do |char|
-    @set.index(char)
+  def char_array(message)
+    message.split('')
   end
-end
 
-def char_index(char_array)
-  (0..char_array.length - 1).to_a
-end
+  def positions_in_set(char_array)
+    char_array.map do |char|
+      @set.index(char)
+    end
+  end
+
+  def char_index(char_array)
+    (0..char_array.length - 1).to_a
+  end
 
 ### ENCRYPTING
   def char_index_and_pos(char_array, char_index, pos_in_set)
     char_array.zip(char_index(char_array), (pos_in_set))
   end
 
-  def encrypt(message, key_arg = "a", date_arg = Date.today)
+  def encrypt(message, key_arg = 'a', date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
     char_array = self.char_array(message)
     pos_in_set = self.positions_in_set(char_array)

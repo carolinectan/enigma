@@ -26,7 +26,7 @@ class Key
       @offset = (@date.to_i ** 2).to_s[-4..-1]
     else
       @date = Date.parse((@date).to_s)
-      @date = @date.strftime("%d%m%y")
+      @date = @date.strftime('%d%m%y')
       @offset = (@date.to_i ** 2).to_s[-4..-1]
     end
   end
