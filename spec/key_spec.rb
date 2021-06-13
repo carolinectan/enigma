@@ -36,7 +36,8 @@ RSpec.describe Key do
     end
 
     it 'initializes with attributes' do
-      expect(@key2.date).to eq(Date.today)
+      allow(@key3).to receive(:date).and_return('130621')
+      expect(@key2.date).to eq('130621')
       expect(@key2.key).to eq('12345')
       allow(@key2).to receive(:create_offset).and_return('5641')
       expect(@key2.offset).to eq('5641')
@@ -54,7 +55,6 @@ RSpec.describe Key do
   describe 'a Key with non-numeric key argument and no date argument' do
     before :each do
       @key3 = Key.new("a")
-      require "pry"; binding.pry
     end
 
     it 'exists' do
@@ -62,7 +62,8 @@ RSpec.describe Key do
     end
 
     it 'initializes with attributes' do
-      expect(@key3.date).to eq(Date.today)
+      allow(@key3).to receive(:date).and_return('130621')
+      expect(@key3.date).to eq('130621')
       expect(@key3.key.length).to eq(5)
       expect(@key3.key).to be_a(String)
       allow(@key3).to receive(:key).and_return("98765")
