@@ -23,26 +23,35 @@ RSpec.describe Enigma do
   it 'can split a message into an arary of characters' do
     expected = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
 
-    expect(@enigma.message_char_array('hello world')).to eq(expected)
+    expect(@enigma.char_array('hello world')).to eq(expected)
   end
 
   it 'can return the positions of the message characters in the alphabet' do
-    message_char_array = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+    char_array = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
     expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
 
-    expect(@enigma.positions_in_alphabet(message_char_array)).to eq(expected)
+    expect(@enigma.positions_in_alphabet(char_array)).to eq(expected)
+  end
+
+  it 'can return message character with index' do
+    char_array = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+    expected = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    expect(@enigma.char_index(char_array)).to eq(expected)
   end
 
   it 'can return a nested array of the char and its position in the alphabet' do
-    message_char_array = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
-    pos_in_alphabet = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
-    expected = [["h", 7], ["e", 4], ["l", 11], ["l", 11], ["o", 14],
-    [" ", 26], ["w", 22], ["o", 14], ["r", 17], ["l", 11], ["d", 3]]
+    char_array = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+    char_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    pos_in_alph = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
 
-    expect(@enigma.char_and_pos(message_char_array, pos_in_alphabet)).to eq(expected)
+    expected = [[0, 7], [1, 4], [2, 11], [3, 11], [4, 14],
+    [5, 26], [6, 22], [7, 14], [8, 17], [9, 11], [10, 3]]
+
+    expect(@enigma.char_index_and_pos(char_array, char_index, pos_in_alph)).to eq(expected)
   end
-##########
-  xit 'can encrypt a message with a key and date' do
+
+  it 'can encrypt a message with a key and date' do
     expected = {
                   encryption: "keder ohulw",
                   key: "02715",
