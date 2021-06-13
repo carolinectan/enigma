@@ -14,10 +14,6 @@ class Enigma
   end
 
 ### ENCRYPTING
-  def char_index_and_pos(char_array, char_index, pos_in_set)
-    char_array.zip(char_index(char_array), (pos_in_set))
-  end
-
   def encrypt(message, key_arg = 'a', date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
     char_array = self.char_array(message)

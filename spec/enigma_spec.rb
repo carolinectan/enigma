@@ -69,7 +69,7 @@ RSpec.describe Enigma do
     expect(@enigma.decrypt('keder ohulw', '02715', '040895')). to eq(expected)
   end
 
-  it 'can encrypt a message with a key (uses today s date)' do
+  it "can encrypt a message with a key (uses today's date)" do
     expected = {
                   encryption: 'okfavfqdyry',
                   key: '02715',
@@ -79,7 +79,7 @@ RSpec.describe Enigma do
     expect(@enigma.encrypt('hello world', '02715')). to eq(expected)
   end
 
-  it 'can decrypt a message with a key (uses today s date)' do
+  it "can decrypt a message with a key (uses today's date)" do
     expected = {
                   decryption: 'chicky-chicky parm-parm',
                   key: '02715',
@@ -90,7 +90,7 @@ RSpec.describe Enigma do
     expect(@enigma.decrypt('jncsrd-soox efjqys-ehxg', '02715')). to eq(expected)
   end
 
-  it 'can encrypt a message (generates random key and uses today s date)' do
+  it "can encrypt a message (generates random key and uses today's date)" do
     expected = {
                   encryption: 'rsmaynxdaze',
                   key: '86242',
