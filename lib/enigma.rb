@@ -35,7 +35,7 @@ class Enigma
     message_output('encryption', message, key)
   end
 
-  def decrypt(message, key_arg, date_arg = Date.today)
+  def decrypt(message, key_arg = 'a', date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
     char_index_and_pos = self.char_index_and_pos(message)
     message = char_index_and_pos.map do |char, index, pos|
