@@ -75,7 +75,7 @@ RSpec.describe Enigma do
   end
 
   it "can decrypt a message with a key (uses today's date)" do
-    encrypted = @enigma.encrypt('hello world', '02715'
+    encrypted = @enigma.encrypt('hello world', '02715')
     expected = {
                   date: '130621',
                   decryption: 'hello world',
