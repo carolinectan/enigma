@@ -2,11 +2,11 @@ require_relative '../lib/enigma'
 
 enigma = Enigma.new
 handle = File.open(ARGV[0], "r")
-incoming_text = handle.read
-encrypted_text = enigma.encrypt(incoming_text, ARGV[2], ARGV[3])
+message = handle.read
+encrypted = enigma.encrypt(message, ARGV[2], ARGV[3])
 writer = File.open(ARGV[1], "w")
-writer.write(encrypted_text[:encryption])
+writer.write(encrypted[:encryption])
 writer.close
 
-puts "Created 'encrypted.txt' with the key #{encrypted_text[:key]} and date #{encrypted_text[:date]}"
-puts incoming_text
+puts "Created 'encrypted.txt' with the key #{encrypted[:key]} and date #{encrypted[:date]}"
+puts message
