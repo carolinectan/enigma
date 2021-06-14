@@ -14,7 +14,7 @@ class Key
     else
       @key = Array.new
       5.times do
-        @key << ((0..9).to_a).sample
+        @key << (0..9).to_a.sample
       end
       @key = @key.join
     end
@@ -29,7 +29,7 @@ class Key
       @date = Date.parse((@date).to_s)
       @date = @date.strftime('%d%m%y')
     end
-      offset_math
+    offset_math
   end
 
   def shift_math(range, pos)
