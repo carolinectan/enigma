@@ -1,4 +1,4 @@
-require_relative 'enigma'
+require_relative './lib/enigma'
 
 enigma = Enigma.new
 handle = File.open(ARGV[0], 'r')
