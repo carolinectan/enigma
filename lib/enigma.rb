@@ -32,7 +32,7 @@ class Enigma
         @set.rotate(pos + key.final_shift[:d])[0]
       end
     end.join
-    message_output("encryption", message, key)
+    message_output('encryption', message, key)
   end
 
   def decrypt(message, key_arg, date_arg = Date.today)
@@ -51,6 +51,6 @@ class Enigma
         @set.rotate(pos - key.final_shift[:d])[0]
       end
     end.join
-    message_output("decryption", message, key)
+    message_output('decryption', message, key)
   end
 end

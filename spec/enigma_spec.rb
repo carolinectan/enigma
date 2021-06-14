@@ -38,7 +38,6 @@ RSpec.describe Enigma do
   end
 
   it 'can return a nested array of the char, index, and position in set' do
-    char_array = ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
     char_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     pos_in_set = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
 
@@ -76,14 +75,14 @@ RSpec.describe Enigma do
   end
 
   it "can decrypt a message with a key (uses today's date)" do
-    encrypted = @enigma.encrypt("hello world", "02715")
+    encrypted = @enigma.encrypt('hello world', '02715'
     expected = {
-                  date: "130621",
-                  decryption: "hello world",
-                  key: "02715"
+                  date: '130621',
+                  decryption: 'hello world',
+                  key: '02715'
                 }
     allow(@enigma).to receive(:decrypt).and_return(expected)
-    expect(@enigma.decrypt(encrypted[:encryption], "02715")).to eq(expected)
+    expect(@enigma.decrypt(encrypted[:encryption], '02715')).to eq(expected)
 
     expected = {
                   decryption: 'chicky-chicky parm-parm',
