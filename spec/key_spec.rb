@@ -36,7 +36,7 @@ RSpec.describe Key do
     end
 
     it 'initializes with attributes' do
-      allow(@key3).to receive(:date).and_return('130621')
+      allow(@key2).to receive(:date).and_return('130621')
       expect(@key2.date).to eq('130621')
       expect(@key2.key).to eq('12345')
       allow(@key2).to receive(:create_offset).and_return('5641')
