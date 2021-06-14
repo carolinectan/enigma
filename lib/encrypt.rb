@@ -3,7 +3,7 @@ require_relative '../lib/enigma'
 enigma = Enigma.new
 handle = File.open(ARGV[0], "r")
 incoming_text = handle.read
-encrypted_text = enigma.encrypt(incoming_text)
+encrypted_text = enigma.encrypt(incoming_text, "82648", "240818")
 writer = File.open(ARGV[1], "w")
 writer.write(encrypted_text[:encryption])
 writer.close
