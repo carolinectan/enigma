@@ -1,5 +1,5 @@
 require 'date'
-require_relative '../lib/key'
+require_relative 'key'
 require_relative '../modules/arrayable'
 require_relative '../modules/hashable'
 
