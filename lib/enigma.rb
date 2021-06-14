@@ -15,7 +15,7 @@ class Enigma
 
   def encrypt(message, key_arg = 'a', date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
-    message = self.char_index_and_pos(message).map do |char, index, pos|
+    message = self.char_index_and_pos(message.downcase).map do |char, index, pos|
       if !set.include?(char) then char
       elsif index % 4 == 0 then @set.rotate(pos + key.final_shift[:a])[0]
       elsif index % 4 == 1 then @set.rotate(pos + key.final_shift[:b])[0]
@@ -28,7 +28,7 @@ class Enigma
 
   def decrypt(message, key_arg = 'a', date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
-    message = self.char_index_and_pos(message).map do |char, index, pos|
+    message = self.char_index_and_pos(message.downcase).map do |char, index, pos|
       if !set.include?(char) then char
       elsif index % 4 == 0 then @set.rotate(pos - key.final_shift[:a])[0]
       elsif index % 4 == 1 then @set.rotate(pos - key.final_shift[:b])[0]
