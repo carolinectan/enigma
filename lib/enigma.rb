@@ -15,7 +15,7 @@ class Enigma
     @set = ('a'..'z').to_a << ' '
   end
 
-  def encrypt(message, key_arg = 'a', date_arg = Date.today)
+  def encrypt(message, key_arg = nil, date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
     message = self.char_index_and_pos(message).map do |char, index, pos|
       if !set.include?(char) then char
@@ -28,7 +28,7 @@ class Enigma
     message_output('encryption', message, key)
   end
 
-  def decrypt(message, key_arg = 'a', date_arg = Date.today)
+  def decrypt(message, key_arg = nil, date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
     message = self.char_index_and_pos(message).map do |char, index, pos|
       if !set.include?(char) then char
