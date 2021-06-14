@@ -1,8 +1,4 @@
-require_relative '../modules/mathable'
-
 class Key
-  include Mathable
-
   attr_reader :date, :key, :offset, :final_shift
 
   def initialize(key, date = Date.today)
@@ -17,22 +13,27 @@ class Key
       key
     else
       @key = Array.new
-      nums = (0..9).to_a
       5.times do
-        @key << nums.sample
+        @key << (0..9).to_a.sample
       end
       @key = @key.join
     end
   end
 
+  def offset_math
+    (@date.to_i**2).to_s[-4..-1]
+  end
+
   def create_offset(date = Date.today)
-    if @date.to_s.length == 6 && @date.is_a?(String) && @date.to_i.is_a?(Integer)
-      offset_math
-    else
+    until @date.to_s.length == 6 && @date.is_a?(String) && @date.to_i.is_a?(Integer)
       @date = Date.parse((@date).to_s)
       @date = @date.strftime('%d%m%y')
-      offset_math
     end
+    offset_math
+  end
+
+  def shift_math(range, pos)
+    @key[range].to_i + @offset[pos].to_i
   end
 
   def create_final_shift
