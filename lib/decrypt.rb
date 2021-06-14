@@ -2,11 +2,11 @@ require_relative '../lib/enigma'
 
 enigma = Enigma.new
 handle = File.open(ARGV[0], "r")
-encrypted_text = handle.read
-decrypted_text = enigma.decrypt(encrypted_text, ARGV[2], ARGV[3])
+encrypted = handle.read
+decrypted = enigma.decrypt(encrypted, ARGV[2], ARGV[3])
 writer = File.open(ARGV[1], "w")
-writer.write(decrypted_text[:decryption])
+writer.write(decrypted[:decryption])
 writer.close
 
-puts "Created 'decrypted.txt' with the key #{decrypted_text[:key]} and date #{decrypted_text[:date]}"
-puts decrypted_text
+puts "Created 'decrypted.txt' with the key #{decrypted[:key]} and date #{decrypted[:date]}"
+puts decrypted[:decryption]
