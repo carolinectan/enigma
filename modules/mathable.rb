@@ -1,6 +1,6 @@
 module Mathable
   def offset_math
-    (@date.to_i ** 2).to_s[-4..-1]
+    (@date.to_i**2).to_s[-4..-1]
   end
 
   def shift_math(range, pos)
