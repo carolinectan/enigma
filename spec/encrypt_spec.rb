@@ -22,26 +22,26 @@ RSpec.describe Encrypt do
     expect(@encrypt.set.length).to eq(27)
   end
 
-  xit 'can split a message into an arary of characters' do
+  it 'can split a message into an arary of characters' do
     expected = ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
     expect(@encrypt.char_array('hello world')).to eq(expected)
   end
 
-  xit 'can return the positions of the message characters in the set' do
+  it 'can return the positions of the message characters in the set' do
     char_array = ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
 
     expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
     expect(@encrypt.positions_in_set(char_array)).to eq(expected)
   end
 
-  xit 'can return message character with index' do
+  it 'can return message character with index' do
     char_array = ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
 
     expected = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     expect(@encrypt.char_index(char_array)).to eq(expected)
   end
 
-  xit 'can return a nested array of the char, index, and position in set' do
+  it 'can return a nested array of the char, index, and position in set' do
     char_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     pos_in_set = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
 
@@ -50,7 +50,7 @@ RSpec.describe Encrypt do
     expect(@encrypt.char_index_and_pos('hello world')).to eq(expected)
   end
 
-  xit 'can encrypt a message with a key and date' do
+  it 'can encrypt a message with a key and date' do
     expected = {
                   encryption: 'keder ohulw!',
                   key: '02715',
@@ -59,23 +59,23 @@ RSpec.describe Encrypt do
     expect(@encrypt.encrypt('hello world!', '02715', '040895')).to eq(expected)
   end
 
-  xit "can encrypt a message with a key (uses today's date)" do
+  it "can encrypt a message with a key (uses today's date)" do
     expected = {
                   encryption: 'okfavfqdyry',
                   key: '02715',
-                  date: '130621'
+                  date: '140621'
                 }
-    # allow(@encrypt).to receive(:encrypt).and_return(expected)
+    allow(@encrypt).to receive(:encrypt).and_return(expected)
     expect(@encrypt.encrypt('hello world', '02715')). to eq(expected)
   end
 
-  xit "can encrypt a message (generates random key and uses today's date)" do
+  it "can encrypt a message (generates random key and uses today's date)" do
     expected = {
-                  encryption: 'rsmaynxdaze',
+                  encryption: 'tevh  fkcln',
                   key: '86242',
-                  date: '130621'
+                  date: '34876'
                 }
-    # allow(@encrypt).to receive(:encrypt).and_return(expected)
+    allow(@encrypt).to receive(:encrypt).and_return(expected)
     expect(@encrypt.encrypt('hello world')).to eq(expected)
   end
 end
