@@ -1,6 +1,6 @@
-require_relative 'spechelper'
 require 'rspec'
-require './lib/key'
+require_relative 'spechelper'
+require_relative '../lib/key'
 
 RSpec.describe Key do
   describe 'a Key with key and date arguments' do
@@ -54,7 +54,7 @@ RSpec.describe Key do
 
   describe 'a Key with non-numeric key argument and no date argument' do
     before :each do
-      @key3 = Key.new("a")
+      @key3 = Key.new('a')
     end
 
     it 'exists' do
@@ -66,8 +66,8 @@ RSpec.describe Key do
       expect(@key3.date).to eq('130621')
       expect(@key3.key.length).to eq(5)
       expect(@key3.key).to be_a(String)
-      allow(@key3).to receive(:key).and_return("98765")
-      expect(@key3.key).to eq("98765")
+      allow(@key3).to receive(:key).and_return('98765')
+      expect(@key3.key).to eq('98765')
       allow(@key3).to receive(:create_offset).and_return('5641')
       expect(@key3.offset).to eq('5641')
       expected = {

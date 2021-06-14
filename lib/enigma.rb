@@ -1,41 +1,25 @@
 require 'date'
-require_relative '../lib/key.rb'
+require_relative '../lib/key'
+require_relative '../modules/arrayable'
+require_relative '../modules/hashable'
+require_relative '../modules/cryptable'
 
 class Enigma
+  include Arrayable
+  include Cryptable
+  include Hashable
+
   attr_reader :set
 
   def initialize
     @set = ('a'..'z').to_a << ' '
   end
 
-### FOR BOTH ENCRYPTING AND DECRYPTING
-def char_array(message)
-  message.split('')
-end
-
-def positions_in_set(char_array)
-  char_array.map do |char|
-    @set.index(char)
-  end
-end
-
-def char_index(char_array)
-  (0..char_array.length - 1).to_a
-end
-
-### ENCRYPTING
-  def char_index_and_pos(char_array, char_index, pos_in_set)
-    char_array.zip(char_index(char_array), (pos_in_set))
-  end
-
-  def encrypt(message, key_arg = "a", date_arg = Date.today)
+  def encrypt(message, key_arg = 'a', date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
-    char_array = self.char_array(message)
-    pos_in_set = self.positions_in_set(char_array)
-    char_index = self.char_index(char_array)
-    char_index_and_pos = self.char_index_and_pos(char_array, char_index, pos_in_set)
-
-    encrypted_message = char_index_and_pos.map do |char, index, pos|
+    char_index_and_pos = self.char_index_and_pos(message)
+    # self.crypt(char_index_and_pos, key, ('+').to_sym)
+    message = char_index_and_pos.map do |char, index, pos|
       if !set.include?(char)
         char
       elsif index % 4 == 0
@@ -48,23 +32,13 @@ end
         @set.rotate(pos + key.final_shift[:d])[0]
       end
     end.join
-
-    {
-      encryption: encrypted_message,
-      key: key.key,
-      date: key.date
-    }
+    message_output('encryption', message, key)
   end
 
-### DECRYPTING
   def decrypt(message, key_arg, date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
-    char_array = self.char_array(message)
-    pos_in_set = self.positions_in_set(char_array)
-    char_index = self.char_index(char_array)
-    char_index_and_pos = self.char_index_and_pos(char_array, char_index, pos_in_set)
-
-    decrypted_message = char_index_and_pos.map do |char, index, pos|
+    char_index_and_pos = self.char_index_and_pos(message)
+    message = char_index_and_pos.map do |char, index, pos|
       if !set.include?(char)
         char
       elsif index % 4 == 0
@@ -77,10 +51,6 @@ end
         @set.rotate(pos - key.final_shift[:d])[0]
       end
     end.join
-    {
-      decryption: decrypted_message,
-      key: key.key,
-      date: key.date
-    }
+    message_output('decryption', message, key)
   end
 end
