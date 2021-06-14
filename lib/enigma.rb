@@ -15,7 +15,6 @@ class Enigma
     @set = ('a'..'z').to_a << ' '
   end
 
-### ENCRYPTING
   def encrypt(message, key_arg = 'a', date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
     char_index_and_pos = self.char_index_and_pos(message)
@@ -36,7 +35,6 @@ class Enigma
     message_output("encryption", message, key)
   end
 
-### DECRYPTING
   def decrypt(message, key_arg, date_arg = Date.today)
     key = Key.new(key_arg, date_arg)
     char_index_and_pos = self.char_index_and_pos(message)
