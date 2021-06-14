@@ -25,13 +25,11 @@ class Key
   end
 
   def create_offset(date = Date.today)
-    if @date.to_s.length == 6 && @date.is_a?(String) && @date.to_i.is_a?(Integer)
-      offset_math
-    else
+    until @date.to_s.length == 6 && @date.is_a?(String) && @date.to_i.is_a?(Integer)
       @date = Date.parse((@date).to_s)
       @date = @date.strftime('%d%m%y')
-      offset_math
     end
+      offset_math
   end
 
   def create_final_shift
