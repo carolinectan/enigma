@@ -12,11 +12,7 @@ class Key
     if key.length == 5 && key.is_a?(String) && key.to_i.is_a?(Integer)
       key
     else
-      @key = Array.new
-      5.times do
-        @key << (0..9).to_a.sample
-      end
-      @key = @key.join
+      @key = '%05d' % rand(100 * 1000)
     end
   end
 
