@@ -17,9 +17,8 @@ class Key
       key
     else
       @key = Array.new
-      nums = (0..9).to_a
       5.times do
-        @key << nums.sample
+        @key << ((0..9).to_a).sample
       end
       @key = @key.join
     end
