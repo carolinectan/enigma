@@ -9,4 +9,4 @@ writer.write(encrypted[:encryption])
 writer.close
 
 puts "Created 'encrypted.txt' with the key #{encrypted[:key]} and date #{encrypted[:date]}"
-puts message
+puts encrypted[:encryption]
